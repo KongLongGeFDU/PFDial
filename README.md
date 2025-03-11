@@ -4,7 +4,7 @@ The code repository of paper "PFDial: A Structured Dialogue Instruction Fine-tun
 Paper Link:https://arxiv.org/abs/2503.06706v1
 
 ## Guide
-The raw data is stored in the `/PFDial-Raw_Data` folder in the form of quintuples with IDs. 
+The raw data is stored in the `/PFDial-Raw_Data` folder in the form of quintuples with IDs. Folder `PFDial-H-Raw_Data` contains the raw data for hard-bench dataset.
 
 We provide training data in `/PFDial-SFT_Data` and training scripts using openRLHF in `/PFDial-Raw_Data` for reference.
 
