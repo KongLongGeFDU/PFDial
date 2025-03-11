@@ -2,3 +2,4 @@
 get-five-tuple.py
 /data.gz
 get_bell.py
+.gitignore
