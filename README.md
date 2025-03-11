@@ -28,6 +28,14 @@ Below is the detailed statistics of the PFDial dataset.
 ## Citation
 If you find this project useful in your research, please cite:
 ```
-
+@misc{zhang2025pfdialstructureddialogueinstruction,
+      title={PFDial: A Structured Dialogue Instruction Fine-tuning Method Based on UML Flowcharts}, 
+      author={Ming Zhang and Yuhui Wang and Yujiong Shen and Tingyi Yang and Changhao Jiang and Yilong Wu and Shihan Dou and Qinhao Chen and Zhiheng Xi and Zhihao Zhang and Yi Dong and Zhen Wang and Zhihui Fei and Mingyang Wan and Tao Liang and Guojun Ma and Qi Zhang and Tao Gui and Xuanjing Huang},
+      year={2025},
+      eprint={2503.06706},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2503.06706}, 
+}
 
 ```
