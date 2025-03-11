@@ -1,0 +1,642 @@
+[
+    {
+        "id": "hard2",
+        "flowchart": "@startuml\nstart\n\n:流程开始;\nrepeat :将零件接收至“隔离”区;\n:调查故障原因;\nfork\n  :记录数据;\n  stop\nfork again\n  :处理决定;\n  if (外部返工?) then (是)\n    :记录返工说明;\n    :发送至“派送”;\n    stop\n  else (否)\n    :记录返工说明;\n    :执行返工流程;\n    :返回至“最终检验”;\n    stop\n  endif\nrepeat while(需要重新隔离?) is(是) not (否)\nend fork\n@enduml",
+        "current_state": "需要重新隔离?",
+        "next_state": "将零件接收至“隔离”区",
+        "user_input": "需要重新隔离零件。",
+        "robot_output": "将需要重新隔离的零件接收至“隔离”区。"
+    },
+    {
+        "id": "hard3",
+        "flowchart": "@startuml\nstart\n:高考成绩公布;\n:学生获取高考成绩单;\n:学生查看高考成绩，确定填报志愿的院校和专业范围;\nrepeat\n  if (需要提前调研院校专业?) then (是)\n    :学生进行院校专业调研;\n  else (否)\n    :跳过此步骤;\n  endif\n  :学生登录填报志愿系统;\n  :系统提供填报志愿的入口和说明;\n  :学生填写志愿，按照优先级排序;\n  :填报完成后系统生成志愿表;\n  :学生确认无误后提交志愿表;\n  if (填报截止?) then (是)\n    :系统关闭填报入口;\n    :等待录取结果公布;\n  else (否)\n    :学生可在截止前修改志愿;\n    :等待填报截止;\n  endif\nrepeat while(志愿填报错误?) is(是) not (否)\n:录取结果公布;\nif (被录取?) then (是)\n  :学生按照录取通知书要求办理报到手续;\nelse (否)\n  :学生进行补报志愿或参加征集志愿;\nendif\n:报到入学;\nstop\n@enduml",
+        "current_state": "志愿填报错误?",
+        "next_state": "需要提前调研院校专业?",
+        "user_input": "发现志愿填报存在错误。",
+        "robot_output": "请确定是否需要提前调研意向院校和专业。"
+    },
+    {
+        "id": "hard86",
+        "flowchart": "@startuml\nstart\n\n:列出商品;\nrepeat\n  :加入购物车;\n  if (商品已加入?) then (是)\n    :已加入购物车;\n    :登录;\n    :查看购物车;\n      :存储信息;;\n    break\n  else (否)\n  endif\nrepeat while (用户未完成购物) is(继续购物) not (完成购物)\n\nstop\n@enduml",
+        "current_state": "用户未完成购物",
+        "next_state": "加入购物车",
+        "user_input": "我要继续购物。",
+        "robot_output": "好的，请选择要加入购物车的商品。"
+    },
+    {
+        "id": "hard87",
+        "flowchart": "@startuml 87c\nstart\n\nrepeat :扫描商品;\nif (客户是公司还是个人?) then (个人)\n  :处理付款;\n  stop\nelse (公司)\n  :登记公司信息;\n  :处理付款;\n  :打印发票;\n  stop\nendif\nrepeat while(还有更多商品?) is(有) not (没有)\n\n@enduml",
+        "current_state": "还有更多商品?",
+        "next_state": "扫描商品",
+        "user_input": "还有商品需要扫描。",
+        "robot_output": "请继续扫描下一个商品。"
+    },
+    {
+        "id": "hard88",
+        "flowchart": "@startuml\nstart\n\n:登录DK;\nrepeat\n  if (搜索图书?) then (是)\n    :搜索图书;\n    if (找到图书?) then (是)\n      :选择图书;\n      :购买图书;\n      break\n    else (否)\n     :继续搜索;\n    endif\n  else (否)\n  endif\nrepeat while (再次搜索?) is(是) not (否)\n\nstop\n@enduml",
+        "current_state": "再次搜索?",
+        "next_state": "搜索图书?",
+        "user_input": "我想再次搜索图书。",
+        "robot_output": "好的，请问您要搜索什么图书？"
+    },
+    {
+        "id": "hard89",
+        "flowchart": "@startuml\nstart\n\n:查询;\nrepeat\n  :检查可用性;\n  if (可用?) then (不可用)\n    :不可用;\n    stop\n  else (可用)\n    :检查会员;\n    if (会员状态?) then (无效)\n      :不可用;\n      stop\n    else (有效)\n      :已发放的图书总数;\n      if (有未发放的图书?) then (不可用)\n        :不可用;\n      else (可用)\n        :图书已发放;\n      endif\n    endif\n  endif\nrepeat while(条件满足?) is(继续查询) not (停止查询)\n\nstop\n@enduml",
+        "current_state": "条件满足?",
+        "next_state": "检查可用性",
+        "user_input": "继续查询下一个条件。",
+        "robot_output": "正在检查下一个条件的可用性。"
+    },
+    {
+        "id": "hard90",
+        "flowchart": "@startuml\nstart\nrepeat\n  :登录系统;\n\n  if (还书?) then (yes)\n    :收回书;\n    if (是否过期?) then (yes)\n      :收费;\n    endif\n    :修改信息;\n  else (no)\n    :借出书;\n  endif\n\n  :退出系统;\nrepeat while(有更多事务处理?) is(有) not (无)\n\nstop\n@enduml",
+        "current_state": "有更多事务处理?",
+        "next_state": "登录系统",
+        "user_input": "有更多事务需要处理。",
+        "robot_output": "请登录系统以处理更多事务。"
+    },
+    {
+        "id": "hard91",
+        "flowchart": "@startuml\nstart\n\n:通过电子邮件接收订单;\nrepeat\n  :将电子邮件数据复制到数据库;\n  if (涉及运输?) then (是)\n    :打印发票和UPS标签;\n    :发送确认运输的电子邮件;\n    :包装并发货;\n  else (否)\n    :提供数字交付;\n  endif\nrepeat while (更多订单?) is (是) not (否)\n\nend\n@enduml",
+        "current_state": "更多订单?",
+        "next_state": "将电子邮件数据复制到数据库",
+        "user_input": "我们有更多的订单处理。",
+        "robot_output": "好的，将电子邮件数据复制到数据库中。"
+    },
+    {
+        "id": "hard92",
+        "flowchart": "@startuml\nstart\n\n:流程开始;\n:将零件接收至“隔离”区;\nrepeat :调查故障原因;\nfork\n  :记录数据;\n  stop\nfork again\n  :处理决定;\n  if (外部返工?) then (是)\n    :记录返工说明;\n    :发送至“派送”;\n    stop\n  else (否)\n    :记录返工说明;\n    :执行返工流程;\n    :返回至“最终检验”;\n    stop\n  endif\nrepeat while(故障未解决?) is(未解决) not (已解决)\nend fork\n@enduml",
+        "current_state": "故障未解决?",
+        "next_state": "调查故障原因",
+        "user_input": "故障尚未解决，需要调查故障原因。",
+        "robot_output": "开始调查故障原因。"
+    },
+    {
+        "id": "hard93",
+        "flowchart": "@startuml 93c\nstart\n\nrepeat\n  :接收账单;\n  :录入数据;\n  :核对账单;\n  if (匹配?) then (是)\n    :批准账单;\n    break\n  else (否)\n    :标记并解决差异;\n  endif\nrepeat while (存在差异?) is (是) not (否)\n\nstop\n@enduml",
+        "current_state": "接收账单",
+        "next_state": "存在差异?",
+        "user_input": "账单已接收并核对完成，现在查看是否存在差异。",
+        "robot_output": "请确认是否账单匹配或需要标记并解决差异。"
+    },
+    {
+        "id": "hard94",
+        "flowchart": "@startuml 94c\nstart\n\n:客户访问商店网站;\n\nrepeat\n  :产品详情页;\n  if (加入购物车?) then (是)\n    :结账页面;\n    if (客户有账户?) then (是)\n      :输入登录凭证;\n    else (否)\n      :输入客户信息;\n    endif\n    :支付网关;\n    if (成功?) then (是)\n      :订单确认;\n      break\n    endif\n  endif\nrepeat while (未成功) is (是) not (否)\n\nstop\n@enduml",
+        "current_state": "未成功",
+        "next_state": "产品详情页",
+        "user_input": "付款未成功，我想查看其他产品。",
+        "robot_output": "好的，现在您可以浏览其他产品的详情页。"
+    },
+    {
+        "id": "hard95",
+        "flowchart": "@startuml\nstart\n\n:流程开始;\n:接收零件;\nrepeat\n  :记录数据;\n\n  if (检验通过?) then (no)\n    :退回供应商;\n    stop\n  else (yes)\n    :转移至仓库;\n    :记录数据;\n    :发放至生产线;\n    :注塑;\n    :固化;\n    \n    if (最终检验通过?) then (no)\n      :隔离;\n      repeat while(!问题解决?) is (未解决)\n    else (yes)\n      :发货;\n    split\n      :记录数据;\n    kill\n    split again\n      :流程结束;\n    end split\n    endif\n  endif\nrepeat while(接收更多零件?) is (是)\nstop\n@enduml",
+        "current_state": "接收更多零件?",
+        "next_state": "记录数据",
+        "user_input": "有新零件需要处理。",
+        "robot_output": "收到新零件，将开始记录数据。"
+    },
+    {
+        "id": "hard96",
+        "flowchart": "@startuml 96c\nstart\n\nrepeat :下载试用版;\n:选择购买版本;\n\nif (通过信用卡还是采购订单支付?) then (采购订单)\n  :提交采购订单;\n  :接收发票;\n\nelse (信用卡)\n  :点击结账按钮;\n  :输入订单详情;\n\nendif\n  :接收确认邮件;\n  :注册产品;\nrepeat while(满意试用情况?) is(不满意) not (满意)\n  :完成;\n\nstop\n@enduml",
+        "current_state": "满意试用情况",
+        "next_state": "下载试用版",
+        "user_input": "我还不满意试用情况。",
+        "robot_output": "好的，让我们来重新下载试用版。"
+    },
+    {
+        "id": "hard97",
+        "flowchart": "@startuml 97c\nstart\n\n:新员工填写文件;\nrepeat\n  :文件发送至管理层审批;\n\n  if (准确性检查?) then (文件通过审批)\n    :HR为新员工准备工作空间;\n    break\n  else (文件修正请求)\n    :新员工修正文件;\n  endif\nrepeat while (文件未通过审批)\n\nstop\n@enduml",
+        "current_state": "文件未通过审批",
+        "next_state": "文件发送至管理层审批",
+        "user_input": "文件已经修正完毕，请重新发送审批。",
+        "robot_output": "文件已发送至管理层审批，请等待审批结果。"
+    },
+    {
+        "id": "hard98",
+        "flowchart": "@startuml 98c\nstart\n\n:关键词想法;\nif (批准?) then (是)\n  repeat\n    :作者创建文章草稿 (包括图片想法);\n    :编辑校对文章并提供反馈;\n    if (需要修改?) then (是)\n      :作者进行修改;\n    else (否)\n      :设计师创建图形;\n    endif\n  repeat while(修改完成?) is 否\n  :营销人员优化文章并发布;\n  :营销团队进行推广;\n  stop\n\nelse (否)\n  :关键词被拒绝;\n  stop\nendif\n@enduml",
+        "current_state": "作者创建文章草稿",
+        "next_state": "修改完成?",
+        "user_input": "文章草稿和图片想法已经初步完成。",
+        "robot_output": "编辑正在校对这篇文章并将提供反馈。"
+    },
+    {
+        "id": "hard99",
+        "flowchart": "@startuml 99c\nstart\n\n:列出商品;\nrepeat\n  :加入购物车;\n  if (商品已加入?) then (是)\n    :已加入购物车;\n    :登录;\n    :查看购物车;\n    fork\n      :存储信息;\n    fork again\n      :打开链接;\n    end fork\n    break\n  else (否)\n  endif\nrepeat while (继续添加商品?) is(是) not (否)\n\nstop\n@enduml",
+        "current_state": "加入购物车",
+        "next_state": "继续添加商品?",
+        "user_input": "商品已加入购物车。",
+        "robot_output": "请问您还需要继续添加商品吗？"
+    },
+    {
+        "id": "hard100",
+        "flowchart": "@startuml \nstart\n\nrepeat\n  :接收到采购订单;\n\n  if (现有客户?) then (是)\n    :将订单录入系统;\n  endif\n  else (否)\n    if (客户来自美国?) then (是)\n      :处理新客户记录;\n      :录入订单;\n    else (否)\n      :提交给主管审批;\n    endif\n  endif\n\n  :处理订单;\n\nrepeat while(还有未处理订单?) is(是) not (否)\nstop\n@enduml",
+        "current_state": "接收到采购订单",
+        "next_state": "还有未处理订单?",
+        "user_input": "采购订单已经接收完毕，还需要处理其他订单吗？",
+        "robot_output": "请确认是否还有未处理的订单。"
+    },
+    {
+        "id": "hard457",
+        "flowchart": "@startuml\nstart\n:选择合适的歌曲;\n:安排合唱练习时间和地点;\n:分发歌词和乐谱给学生;\n:指导学生学习歌曲;\nrepeat\n  :练习音阶和节奏;\n  :练习合唱部分;\n  if (需要调整声部？) then (是)\n    :分配声部;\n    :练习各声部独唱和合唱;\n  else (否)\n    :继续整体合唱练习;\n  endif\n  :指导学生注意和谐、节奏等;\n  :练习完整歌曲;\nrepeat while(满意阶段进度?) is (未满意) not (已满意)\n:安排排练表演;\n:练习表演姿态和表情;\n:进行完整排练;\nif (需要调整？) then (是)\n  :进行调整和再次排练;\nelse (否)\n  :确认表演细节;\nendif\n:结束大合唱排练;\nstop\n@enduml",
+        "current_state": "练习音阶和节奏",
+        "next_state": "满意阶段进度?",
+        "user_input": "我们已经完成了音阶和节奏的练习。",
+        "robot_output": "您对目前阶段的进度满意吗？"
+    },
+    {
+        "id": "hard458",
+        "flowchart": "@startuml\nstart\n:登录学校线上预约系统;\n:选择琴房预约功能;\nrepeat\n  :查看琴房预约情况和时间可用性;\n  :选择预约日期和时间段;\n  if (选择的时间段可用？) then (是)\n    :填写预约目的和联系信息;\n    :确认预约信息;\n    :提交预约请求;\n    if (需要支付费用？) then (是)\n      :选择支付方式;\n      :完成支付流程;\n    else (否)\n      :等待系统确认预约;\n    endif\n  else (否)\n    :选择其他可用时间段;\n  endif\nrepeat while(预约成功？) is(未成功) not (已成功)\n:系统发送预约确认信息;\n:按时前往琴房练习;\n:结束琴房预约流程;\nstop\n@enduml",
+        "current_state": "查看琴房预约情况和时间可用性",
+        "next_state": "预约成功？",
+        "user_input": "我已经查看了琴房的预约情况。",
+        "robot_output": "好的，请继续选择您想要预约的日期和时间段。"
+    },
+    {
+        "id": "hard459",
+        "flowchart": "@startuml\nstart\n\n:确定比赛日期、时间和地点;\n:发布比赛通知和规则;\n:筛选参赛选手;\n:安排参赛选手的演奏顺序;\n:比赛当天签到;\n:参赛选手依次进行演奏;\nrepeat\n    :主持人宣布姓名和表演曲目;\n    :钢琴伴奏上场;\n    :小提琴演奏者上场;\n    :鞠躬;\n    :开始演奏;\nrepeat while (所有选手演奏完毕？) is (否)\n:评委评分;\n:计算得分并排名;\n:颁发奖项;\n:结束比赛;\nstop\n@enduml",
+        "current_state": "主持人宣布姓名和表演曲目",
+        "next_state": "所有选手演奏完毕？",
+        "user_input": "所有选手都已演奏完毕。",
+        "robot_output": "评委将开始评分。"
+    },
+    {
+        "id": "hard460",
+        "flowchart": "@startuml\nstart\n:选择照明设计的场所类型 (室内/室外);\nif (场所类型为室内?) then (是)\n  :一般照明;\n  :装饰照明;\n  :重点照明;\n  :任务照明;\n  :调光需求;\nelse (否)\n  :景观照明;\n  :安全照明;\n  :导向照明;\n  :装饰照明;\n  :节能需求;\nendif\nrepeat\n  :选择功能需求 (一般照明/装饰照明/重点照明);\n  :考虑用户需求 (舒适性/节能等);\n  if (需要节能设计?) then (是)\n    :考虑节能要求和方案;\n  else (否)\n    :不考虑节能设计;\n  endif\n  :整理需求分析结果;\nrepeat while (设计要求未满足?) is (不满足) not(已满足)\nstop\n@enduml",
+        "current_state": "重新设计",
+        "next_state": "设计要求未满足?",
+        "user_input": "设计调整完成，但要求仍然没有完全满足。",
+        "robot_output": "设计要求还未满足，我们需要重新检查并改进设计。"
+    },
+    {
+        "id": "hard461",
+        "flowchart": "@startuml\nstart\n:确定照明需求和功能需求;\nrepeat\n  if (需要传统照明?) then (是)\n    :选择白炽灯;\n    :根据需求确定瓦数和色温;\n  else (否)\n    if (需要荧光灯?) then (是)\n      :选择荧光灯;\n      :根据需求确定类型和色温;\n    else\n      :选择LED灯;\n      :根据需求确定功率和色温;\n    endif\n  endif\n  :根据需求选择光源亮度和色温;\n  :设计灯具布局方案;\n  if (需要光源调光?) then (是)\n    :考虑可调光光源和调光设备;\n  else (否)\n    :不考虑光源调光;\n  endif\n  :评估灯具布局效果;\n  :调整灯具位置和数量;\nrepeat while (照度要求未满足?) is (否) not (是)\n:最终确定光源选择和灯具布局方案;\nstop\n@enduml",
+        "current_state": "照度要求未满足?",
+        "next_state": "需要传统照明?",
+        "user_input": "当前的灯具布局未满足照度要求。",
+        "robot_output": "我们需要确定是否需要传统照明。"
+    },
+    {
+        "id": "hard462",
+        "flowchart": "@startuml\nstart\n:与施工队沟通照明设计方案;\n:解释设计需求和灯具布局;\n:提供技术支持和指导;\n:协调安装时间和进度;\n:监督灯具安装过程;\n:进行灯具调试和亮度调整;\nrepeat\n  :确认灯具布局和安装位置;\n  :监督灯具安装过程;\n    :检查灯具安装质量和安全性;\n    if (需要调整灯具位置?) then (是)\n      :协商调整方案;\n      :重新安装或调整灯具位置;\n    else (否)\n      :确认最终安装结果;\n    endif\nrepeat while(灯具调试成功?) is (未成功) not (成功)\n:最终验收照明系统;\n:确保照明系统符合设计要求;\n:完善施工文档和记录;\nstop\n@enduml",
+        "current_state": "灯具调试成功?",
+        "next_state": "确认灯具布局和安装位置",
+        "user_input": "灯具调试未成功，需要重新确认布局和安装位置。",
+        "robot_output": "好的，我们将重新确认灯具布局和安装位置。"
+    },
+    {
+        "id": "hard463",
+        "flowchart": "@startuml\nstart\n:制定验收标准和流程;\nrepeat\n  :对比设计方案和实际实施情况;\n  if (符合标准?) then (是)\n    :完成照明系统验收;\n    :记录验收结果;\n    :移交给维护团队;\n  else (否)\n    :确定问题和不符合之处;\n    :提出整改要求;\n    :重新进行调整和验收;\n  endif\nrepeat while(验收失败?) is(未通过) not (通过)\n:建立定期维护计划;\n:检查灯具运行情况和亮度;\n:清洁灯具和灯具周围环境;\nif (发现故障或异常?) then (是)\n  :诊断问题原因;\n  :修复或更换故障灯具;\n  :记录维护信息;\nelse (否)\n  :记录维护情况;\nendif\n:定期进行系统性能评估;\n:根据评估结果调整维护计划;\n:持续监督照明系统运行;\nstop\n@enduml",
+        "current_state": "验收失败?",
+        "next_state": "对比设计方案和实际实施情况",
+        "user_input": "验收未通过，需要重新对比设计方案和实际实施情况。",
+        "robot_output": "请开始对比设计方案和实际实施情况。"
+    },
+    {
+        "id": "hard464",
+        "flowchart": "@startuml\nstart\n:收集需求和功能规格;\n:分析照明系统控制需求;\n:确定控制策略和方案;\n:选择合适的控制设备和技术;\nif (需要远程控制?) then (是)\n  :考虑网络通信和远程控制设备;\nelse (否)\n  :不考虑远程控制;\nendif\nrepeat\n:设计控制系统架构和连接方式;\n:编写控制系统程序;\n:进行仿真测试和调试;\nif (测试通过?) then (是)\n  :安装控制系统;\n  :调试和优化控制程序;\nelse (否)\n  :调整程序并重新测试;\nendif\nrepeat while(最终测试通过?) is(否) not (是)\n:培训操作人员和维护人员;\n:记录控制系统细节和参数;\n:最终验收控制系统;\n:完善文档和记录;\nstop\n@enduml",
+        "current_state": "最终测试通过?",
+        "next_state": "设计控制系统架构和连接方式",
+        "user_input": "最终测试未通过，重新设计控制系统架构和连接方式。",
+        "robot_output": "好的，我们将重新开始设计控制系统的架构和连接方式。"
+    },
+    {
+        "id": "hard465",
+        "flowchart": "@startuml\nstart\n:接收设备;\nrepeat\n  :查看设备型号;\n  if (设备可修复?) then (是)\n    :记录信息;\n    :问题诊断;\n    :报价;\n    if (客户同意报价?) then (是)\n      :报价确认;\n      :签署维修协议;\n      break\n    else (否)\n      :结束维修流程;\n      stop\n    endif\n  else (否)\n    :不修复;\n    :结束维修流程;\n    stop\n  endif\nrepeat while (设备未修复) is(重试) not(继续)\nstop\n@enduml",
+        "current_state": "设备未修复",
+        "next_state": "查看设备型号",
+        "user_input": "设备未修复，需要查看设备型号。",
+        "robot_output": "正在查看设备型号。"
+    },
+    {
+        "id": "hard466",
+        "flowchart": "@startuml\nstart\n\n:接收平板设备;\nrepeat\n  :查看屏幕是否坏;\n  if (屏幕坏了?) then (是)\n    :确定内屏或外屏坏;\n    if (内屏坏了?) then (是)\n      :记录信息;\n      :维修或更换内屏;\n    else (否)\n      :记录信息;\n      :维修或更换外屏;\n    endif\n  else (否)\n    :屏幕正常;\n  endif\n  :查看按键;\n  if (按键有问题?) then (是)\n    :维修按键;\n  else (否)\n    :按键正常;\n  endif\n  :查看电池;\n  if (电池需要更换?) then (是)\n    :更换电池;\n  else (否)\n    :电池正常;\n  endif\n  :清洁设备;\n  :设备测试;\n  if (测试通过?) then (是)\n    :客户验收;\n    :交付设备;\n    stop\n  else (否)\n    :问题调试;\n    if (问题解决?) then (是)\n      :重新测试;\n      if (测试通过?) then (是)\n        :客户验收;\n        :交付设备;\n        stop\n      else (否)\n        :问题调试;\n      endif\n    else (否)\n      :结束维修流程;\n      stop\n    endif\n  endif\nrepeat while(问题未解决?) is(继续维修) not (停止)\n@enduml",
+        "current_state": "问题未解决?",
+        "next_state": "查看屏幕是否坏",
+        "user_input": "需要继续维修。",
+        "robot_output": "好的，我们先查看屏幕是否坏。"
+    },
+    {
+        "id": "hard467",
+        "flowchart": "@startuml\nstart\n\n:接收相机设备;\n:记录设备信息;\n:检查镜头;\nrepeat\n  if (镜头有问题?) then (是)\n    :维修或更换镜头;\n  else (否)\n    :镜头正常;\n  endif\n  :检查相机盖;\n  if (相机盖有问题?) then (是)\n    :维修或更换相机盖;\n  else (否)\n    :相机盖正常;\n  endif\n  :检查按钮;\n  if (按钮有问题?) then (是)\n    :维修按钮;\n  else (否)\n    :按钮正常;\n  endif\n  :检查显示屏;\n  if (显示屏有问题?) then (是)\n    :维修或更换显示屏;\n  else (否)\n    :显示屏正常;\n  endif\n  :检查存储卡;\n  if (存储卡有问题?) then (是)\n    :处理存储卡问题;\n  else (否)\n    :存储卡正常;\n  endif\n  :设备测试;\n  if (测试通过?) then (是)\n    :客户验收;\n    :交付设备;\n    stop\n  else (否)\n    :问题调试;\n  endif\nrepeat while(交付测试通过?) is(不通过) not (通过)\n\nstop\n@enduml",
+        "current_state": "交付测试通过?",
+        "next_state": "镜头有问题?",
+        "user_input": "设备交付测试没有通过。",
+        "robot_output": "好，我们先来检查镜头。"
+    },
+    {
+        "id": "hard468",
+        "flowchart": "@startuml\nstart\n:接收AirPods设备;\n:记录设备信息;\nrepeat\n  :检查充电盒;\n  if(无法修复) then(否)\n  else(是)\n    :结束维修;\n    stop\n  endif\n  :检查左右耳机;\n  if(无法修复) then(否)\n  else(是)\n    :结束维修;\n    stop\n  endif\n  :检查耳机外壳;\n  if(无法修复) then(否)\n  else(是)\n    :结束维修;\n    stop\n  endif\n  :检查耳机内部电池;\n  if(无法修复) then(否)\n  else(是)\n    :结束维修;\n    stop\n  endif\n  :检查触控传感器;\n  if(无法修复) then(否)\n  else(是)\n    :结束维修;\n    stop\n  endif\n  :检查麦克风;\n  if(无法修复) then(否)\n  else(是)\n    :结束维修;\n    stop\n  endif\n  :检查充电接口;\n  if(无法修复) then(否)\n  else(是)\n    :结束维修;\n    stop\n  endif\n  :检查声音驱动单元;\n  if(无法修复) then(否)\n  else(是)\n    :结束维修;\n    stop\n  endif\nrepeat while(所有问题已解决？) is(未解决) not (已解决)\n:维修;\n:交付客户;\nstop\n@enduml",
+        "current_state": "所有问题已解决？",
+        "next_state": "检查充电盒",
+        "user_input": "所有问题尚未解决。",
+        "robot_output": "我们将检查设备的充电盒。"
+    },
+    {
+        "id": "hard469",
+        "flowchart": "@startuml\nstart\n:买家浏览车辆信息;\nrepeat\n  :选择感兴趣的车辆;\n  :联系卖家并安排看车;\n  if (车况满意?) then (是)\n    :商议价格并达成交易协议;\n    :签订买卖合同;\n    :付款并办理过户手续;\n    if (过户完成?) then (是)\n      :交付车辆;\n      :交易完成;\n    else (否)\n      :继续办理过户手续;\n    endif\n  else (否)\n    :结束交易;\n  endif\nrepeat while(未找到合适车辆) is(未找到) not(找到合适车辆)\nstop\n@enduml",
+        "current_state": "未找到合适车辆",
+        "next_state": "选择感兴趣的车辆",
+        "user_input": "我找到了合适的车辆。",
+        "robot_output": "请您选择感兴趣的车辆。"
+    },
+    {
+        "id": "hard470",
+        "flowchart": "@startuml\nstart\n\nrepeat \n  :买家浏览车辆信息;\n  :选择感兴趣的车辆;\n  :联系卖家并要求车辆信息;\n  if (车况符合期望?) then (是)\n    :预约车辆检查;\n    if (检查通过?) then (是)\n      :商议价格并谈判;\n      if (谈判达成协议?) then (是)\n        :签订买卖合同;\n        :支付定金;\n        :安排检测机构鉴定车辆;\n        if (鉴定结果满意?) then (是)\n          :支付尾款;\n          :办理过户手续;\n          if (过户完成?) then (是)\n            :车辆交付;\n            :交易完成;\n          else (否)\n            :继续办理过户手续;\n          endif\n        else (否)\n          :终止交易;\n        endif\n      else (否)\n        :结束交易;\n      endif\n    else (否)\n      :结束交易;\n    endif\n  else (否)\n    :结束交易;\n  endif\nrepeat while(感兴趣的车辆找到?) is(没找到) not (找到)\n  \nstop\n@enduml",
+        "current_state": "感兴趣的车辆找到?",
+        "next_state": "买家浏览车辆信息",
+        "user_input": "我找到了感兴趣的车辆。",
+        "robot_output": "好的，请开始浏览车辆信息。"
+    },
+    {
+        "id": "hard471",
+        "flowchart": "@startuml\nstart\n\nrepeat\n  :浏览卖家信誉和口碑;\n  :要求卖家提供车辆相关文件;\n  if (文件完整?) then (是)\n    :预约车辆专业检查;\n    if (检查通过?) then (是)\n      :要求试驾;\n      :商议价格并谈判;\n      if (谈判达成协议?) then (是)\n        :签订买卖合同;\n        :支付定金;\n        :查询车辆历史记录;\n        if (历史记录无异常?) then (是)\n          :支付尾款;\n          :办理过户手续;\n          if (过户完成?) then (是)\n            :车辆交付;\n            :交易完成;\n          else (否)\n            :继续办理过户手续;\n          endif\n        else (否)\n          :终止交易;\n        endif\n      else (否)\n        :结束交易;\n      endif\n    else (否)\n      :结束交易;\n    endif\n  else (否)\n    :结束交易;\n  endif\nrepeat while(交易未完成?) is (未完成) not (完成)\nstop\n@enduml",
+        "current_state": "交易未完成?",
+        "next_state": "浏览卖家信誉和口碑",
+        "user_input": "交易还未完成，我想开始浏览卖家的信誉和口碑。",
+        "robot_output": "好的，我们将开始浏览卖家的信誉和口碑。"
+    },
+    {
+        "id": "hard472",
+        "flowchart": "@startuml\nstart\nrepeat\n  :准备必要文件;\n  :双方前往车管所或交警部门;\n  :提交过户申请;\n  if (文件齐全?) then (是)\n    :缴纳税费;\n    :办理过户手续;\n    if (手续完成?) then (是)\n      :领取新证件;\n      :备案登记;\n      :过户完成;\n      stop\n    else (否)\n      :手续未完成;\n    endif\n  else (否)\n    :过户申请被拒绝;\n  endif\nrepeat while(所有手续完成?) is(未完成) not (完成)\n@enduml",
+        "current_state": "所有手续完成?",
+        "next_state": "准备必要文件",
+        "user_input": "手续未完成。",
+        "robot_output": "请准备必要的文件以继续办理手续。"
+    },
+    {
+        "id": "hard473",
+        "flowchart": "@startuml\nstart\n:接受视力检查;\nrepeat\n  :接受初步视力筛查;\n  if (初步筛查结果异常?) then (是)\n    :进行更详细的视力检查;\n  else (否)\n    :视力正常;\n  endif\nrepeat while(视力问题解决?) is(未解决) not (已解决)\n:进行眼球健康检查;\n:进行眼底检查;\n:评估视力状况;\nif (需要配镜) then (是)\n  :配镜;\nendif\n:结束视力检查;\nstop\n@enduml",
+        "current_state": "视力问题解决?",
+        "next_state": "接受初步视力筛查",
+        "user_input": "视力问题未解决。",
+        "robot_output": "请接受初步视力筛查。"
+    },
+    {
+        "id": "hard474",
+        "flowchart": "@startuml\nstart\n:确认患者身份和需求;\n:准备抽血工具和试剂;\nrepeat\n  :选择合适的采血部位;\n  :消毒皮肤;\n  :固定皮肤;\n  :穿刺采血;\n  :采集血液样本;\nrepeat while(采集完成?) is(否) not (是)\n  :停止出血;\n  :处理采血废物;\n  :标记样本信息;\n  :送检实验室;\n  :记录抽血过程;\n:结束抽血过程;\nstop\n@enduml",
+        "current_state": "采集完成?",
+        "next_state": "选择合适的采血部位",
+        "user_input": "采集未完成，需要重新选择采血部位。",
+        "robot_output": "请重新选择合适的采血部位。"
+    },
+    {
+        "id": "hard475",
+        "flowchart": "@startuml\nstart\n:患者就诊;\n:医生初步询问症状;\nrepeat\n  :耳部检查;\n  :检查耳廓、外耳道;\n  :使用听诊器检查耳内部;\n  :鼻部检查;\n  :观察鼻腔、鼻窦;\n  :使用鼻镜检查鼻内部;\n  :喉部检查;\n  :观察咽喉部;\n  :使用喉镜检查声带和咽部;\n  if (需要进行听力测试？) then (是)\n    :进行听力测试;\n  endif\nrepeat while(是否需要重复检查?) is(需要) not (不需要)\n:根据检查结果给出诊断意见;\n:制定治疗方案;\n:开具处方或建议进一步检查;\n:结束就诊;\nstop\n@enduml",
+        "current_state": "是否需要重复检查?",
+        "next_state": "耳部检查",
+        "user_input": "需要重复检查一次。",
+        "robot_output": "好的，我们将再次进行耳部检查。"
+    },
+    {
+        "id": "hard476",
+        "flowchart": "@startuml\nstart\n:患者就诊;\n:准备心电图仪器;\n:将导联贴在患者身上;\n:连接导联到心电图仪器;\n:患者保持安静呼吸均匀;\nrepeat\n  :记录心电图;\n  if (需要) then (是)\n    :进行运动心电图;\n  endif\n  :分析心电图结果;\n  endif\nrepeat while(检查结果令人满意?) is(否) not (是)\n:由医生解读心电图;\n:根据结果给出诊断和建议;\n:结束心电图检查;\nstop\n@enduml",
+        "current_state": "检查结果令人满意?",
+        "next_state": "记录心电图",
+        "user_input": "检查结果不太满意，需要重新记录心电图。",
+        "robot_output": "好的，重新开始记录心电图。"
+    },
+    {
+        "id": "hard477",
+        "flowchart": "@startuml\nstart\n:患者就诊;\n:领取尿杯;\nrepeat\n  :收集新鲜尿液样本;\n  :记录尿液样本信息;\n  :将尿液送至实验室;\n  :尿液外观检查;\n  :尿液化验;\n  if (需要) then (是)\n    :进行镜检;\n    :进行尿液沉淀物检查;\n    :进行尿液生化检查;\n    :进行尿液培养;\n  endif\n  :解读尿液检查结果;\nrepeat while(检查结果合格?) is(不合格) not (合格)\n:根据检查结果给出诊断和建议;\n:结束尿液检查;\nstop\n@enduml",
+        "current_state": "检查结果合格?",
+        "next_state": "收集新鲜尿液样本",
+        "user_input": "检查结果不合格，需要重新检查。",
+        "robot_output": "请再次收集新鲜尿液样本。"
+    },
+    {
+        "id": "hard478",
+        "flowchart": "@startuml\nstart\n:顾客到达证件照拍摄点;\n:选择证件照类型（身份证、护照等）;\n:与摄影师确认拍摄要求;\n:确认拍摄风格和背景;\nrepeat\n  :拍摄准备（调整姿势、表情）;\n  :拍摄证件照;\n  if (满意?) then (是)\n    :选定照片;\n    :进行裁剪和修饰;\n    :输出成品照片;\n    :支付费用;\n  else (否)\n    :重新拍摄;\n  endif\nrepeat while (成功? 照片满意?) is (否) not(满意) \n:交付成品证件照;\n:顾客离开拍摄点;\nstop\n@enduml",
+        "current_state": "成功? 照片满意?",
+        "next_state": "拍摄准备（调整姿势、表情）",
+        "user_input": "拍摄的照片不满意，需要重新来一次。",
+        "robot_output": "好的，我们现在进行拍摄准备，请调整姿势和表情。"
+    },
+    {
+        "id": "hard479",
+        "flowchart": "@startuml\nstart\n:顾客预约写真拍摄;\n:与客户沟通拍摄需求和风格;\n:顾客选择套餐类型;\nif (豪华套餐?) then (是)\n  :挑选3套造型;\nelse (否)\n  :挑选1套造型;\nendif\n:选择主题和场景;\n:制定拍摄计划;\n:场景布置和道具准备;\nrepeat\n  :进行拍摄;\n  :反馈和调整;\nrepeat while(拍摄满意度?) is(不满意) not (满意)\n:选定和后期处理;\nif (豪华套餐?) then (是)\n  :挑选10张底片;\nelse (否)\n  :挑选5张底片;\nendif\n:输出成品照片;\n:支付费用;\n:交付成品照片;\n:客户离开拍摄现场;\nstop\n@enduml",
+        "current_state": "拍摄满意度?",
+        "next_state": "进行拍摄",
+        "user_input": "顾客对拍摄结果表示不满意。",
+        "robot_output": "好的，我们将继续进行拍摄，以确保您对照片满意。"
+    },
+    {
+        "id": "hard480",
+        "flowchart": "@startuml\nstart\n:顾客到达照相馆;\n:提交要打印的照片文件;\n:选择打印照片的尺寸和数量;\n:选择打印纸质和表面效果;\n:确认打印订单和价格;\nrepeat  if (照片质量检查通过?) then (是)\n  :支付费用;\n  :照片打印中;\n  if (完成打印?) then (是)\n    :展示打印好的照片;\n    :客户满意?;\n    if (客户满意?) then (是)\n      :完成交易;\n    else (否)\n      :重新选择照片;\n      :重新打印;\n      :完成交易;\n    endif\n  else (否)\n    :等待照片打印;\n    :重复检查是否完成打印;\n  endif\nelse (否)\n  :提示照片质量不佳;\n  :重新选择照片;\nendif\nrepeat while(需要重新打印?) is(是) not (完成)\n:顾客离开照相馆;\nstop\n@enduml",
+        "current_state": "需要重新打印?",
+        "next_state": "照片质量检查通过?",
+        "user_input": "照片质量检查通过了。",
+        "robot_output": "好的，我们将继续进行支付费用的步骤。"
+    },
+    {
+        "id": "hard481",
+        "flowchart": "@startuml\nstart\n:顾客到达照相馆;\nrepeat \n  :选择服务项目;\n  if (打印照片?) then (是)\n    :提交要打印的照片文件;\n    :选择打印照片的尺寸和数量;\n    :选择打印纸质和表面效果;\n    :确认打印订单和价格;\n    if (照片质量检查通过?) then (是)\n      :支付费用;\n      :照片打印中;\n      if (完成打印?) then (是)\n        :展示打印好的照片;\n        :客户满意?;\n        if (客户满意?) then (是)\n          :完成交易;\n        else (否)\n          :重新选择照片;\n          :重新打印;\n          :完成交易;\n        endif\n      else (否)\n        :等待照片打印;\n        :重复检查是否完成打印;\n      endif\n    else (否)\n      :提示照片质量不佳;\n      :重新选择照片;\n      :重新打印;\n      :完成交易;\n    endif\n  else (否)\n    if (其他服务?) then (是)\n      :选择其他服务项目;\n      :咨询摄影师;\n      :预约拍摄时间;\n      :进行拍摄;\n      :选择照片后期处理;\n      :输出成品照片;\n      :支付费用;\n      :完成交易;\n    else (否)\n      :客户离开照相馆;\n      :结束服务;\n    endif\n  endif\nrepeat while (需要其他服务项目?) is(是) not (否)\nstop\n@enduml",
+        "current_state": "需要其他服务项目?",
+        "next_state": "选择服务项目",
+        "user_input": "我还有其他服务项目需要选择。",
+        "robot_output": "请您继续选择服务项目。"
+    },
+    {
+        "id": "hard482",
+        "flowchart": "@startuml\nstart\n:选择漂流活动地点和时间;\nrepeat\n  :查询天气和水流情况;\n  if (确定安全可行?) then (是)\n    :预约漂流活动并支付费用;\n    :接受安全须知和装备说明;\n    :参与漂流前的准备训练;\n    :穿戴救生衣和其他必要装备;\n    :接受漂流指导和技巧培训;\n    :乘坐漂流艇到达出发点;\n    :进行漂流活动;\n    while (继续漂流?) is (是)\n      :遵循指导前行，避开障碍物;\n      if (遇到急流或激流?) then (是)\n        :执行应对急流的技巧;\n      endif\n      if (需要调整姿势或方向?) then (是)\n        :调整漂流艇姿势或方向;\n      endif\n    endwhile\n    :到达终点;\n    :结束漂流活动;\n    :归还装备;\n    :参与总结和反馈环节;\n    if (满意度调查?) then (是)\n      :填写满意度调查表;\n    endif\n    :活动结束;\n  else (否)\n    :重新选择安全的漂流活动地点;\n  endif\nrepeat while(最终计划安全可行?) is(否) not (是)\nstop\n@enduml",
+        "current_state": "最终计划安全可行?",
+        "next_state": "查询天气和水流情况",
+        "user_input": "已经确定最终计划需要重新评估安全性。",
+        "robot_output": "好，我会查询天气和水流情况以重新评估安全性。"
+    },
+    {
+        "id": "hard483",
+        "flowchart": "@startuml\nstart\n:选择徒步路线和目的地;\n:准备行装和装备;\n:检查地图和导航工具;\n:确定出发时间和集合地点;\nrepeat\n  :进行健康状况检查;\n  if (健康状况正常?) then (是)\n    :出发徒步旅行;\n    :沿途欣赏风景，保持队形;\n    :定时休息和补充水分;\n    while (继续徒步?) is (是)\n      :遵循路标和地图导航;\n      if (遇到岔路或不明确路标?) then (是)\n        :使用导航工具确认方向;\n      endif\n      :保持团队间距和联系;\n    endwhile\n    :到达目的地;\n    :安顿营地，搭建帐篷;\n    :准备晚餐和营火;\n    :交流分享当天徒步经历;\n    :休息准备第二天行程;\n  else (否)\n    :暂缓或取消徒步计划;\n    :寻求医疗帮助或调整行程;\n  endif\nrepeat while(计划完成?) is (否)\n:结束徒步旅行;\n:整理行装和装备;\n:回顾徒步经验和收获;\n:活动结束;\nstop\n@enduml",
+        "current_state": "计划完成?",
+        "next_state": "进行健康状况检查",
+        "user_input": "计划尚未完成。",
+        "robot_output": "进行健康状况检查，以确保安全。"
+    },
+    {
+        "id": "hard484",
+        "flowchart": "@startuml\nstart\n\n:选择攀岩路线和攀岩场地;\n:检查攀岩装备和安全设施;\n:接受攀岩安全指导和技巧培训;\n:穿戴攀岩装备，包括头盔、安全带等;\n:进行热身运动和拉伸;\n:选择攀爬伙伴，检查互相装备;\nrepeat\n  :开始攀爬;\n   while (继续攀爬?) is (是)\n     :遵循攀岩路线，注意手脚配合;\n     if (遇到困难或不确定路线?) then (是)\n       :寻找支撑点，调整姿势;\n       :请求攀爬伙伴协助或教练指导;\n     endif\n     :保持专注和呼吸平稳;\n   endwhile\n  :到达攀岩终点;\nrepeat while(进行下一轮攀爬?) is(是) not(否)\n:安全下降或回到地面;\n:整理装备，归还设备;\n:参与攀岩经验分享和总结;\nif (有反馈或建议?) then (是)\n  :提出反馈意见;\nendif\n:活动结束;\nstop\n@enduml",
+        "current_state": "进行下一轮攀爬?",
+        "next_state": "开始攀爬",
+        "user_input": "是的，我想进行下一轮攀爬。",
+        "robot_output": "好的，请开始攀爬，并注意安全。"
+    },
+    {
+        "id": "hard485",
+        "flowchart": "@startuml\nstart\n:选择露营地点和日期;\n:检查天气和地形条件;\nrepeat :准备露营装备和食物;\n:确定交通方式和集合地点;\n:进行健康和安全检查;\nif (健康和安全状态良好?) then (是)\n  :出发前往露营地点;\n  :到达露营地点，寻找合适的露营区域;\n  :搭建帐篷或搭建临时遮蔽物;\n  :安排食物储备和烹饪设备;\n  :探索周边环境，欣赏自然风景;\n  while (继续露营?) is (是)\n    :进行户外活动，如徒步、钓鱼等;\n    :保持环境整洁和安全;\n    :点燃篝火，分享故事和烤食物;\n    if (遇到紧急情况?) then (是)\n      :执行应急计划，求助救援;\n    endif\n  endwhile\n  :整理露营装备和垃圾;\n  :离开露营地点，确保不留下垃圾;\n  :归还租赁设备或清理个人装备;\n  :回顾和总结露营经历;\nelse (否)\n  :暂缓或取消露营计划;\n  :寻求医疗帮助或调整行程;\nendif\nrepeat while(准备充分?) is(否) not (是)\n:结束露营活动;\n:活动结束;\nstop\n@enduml",
+        "current_state": "准备充分?",
+        "next_state": "准备露营装备和食物",
+        "user_input": "准备还不充分，需要继续准备。",
+        "robot_output": "请继续准备露营装备和食物。"
+    },
+    {
+        "id": "hard486",
+        "flowchart": "@startuml\nstart\n:选择定向越野赛事和赛程;\n:检查定向越野装备和地图工具;\n:了解赛事规则和安全须知;\n:参加赛前指导和布置;\n:穿着适合的越野装备和鞋子;\n:进行热身运动和拉伸;\n:领取地图和赛事号码牌;\n:听取赛前简报和注意事项;\nrepeat\n  :开始定向越野;\n  while (继续定向越野?) is (是)\n    :根据地图寻找控制点;\n    if (无法找到控制点?) then (是)\n      :使用定位设备确认位置;\n    endif\n    :保持良好的导航和方向感;\n  endwhile\n  :完成所有控制点的定向;\nrepeat while(继续另一次比赛？) is (是)\n:到达终点，交还号码牌;\n:参加颁奖和总结活动;\nif (有反馈或建议?) then (是)\n  :提出反馈意见;\nelse\n  :感谢您的参与，活动结束;\nendif\nstop\n@enduml",
+        "current_state": "继续另一次比赛？",
+        "next_state": "开始定向越野",
+        "user_input": "我们将继续参加另一次比赛。",
+        "robot_output": "请准备好，我们将开始新的定向越野挑战。"
+    },
+    {
+        "id": "hard487",
+        "flowchart": "@startuml\nstart\n:准备阶段;\n:选择环保项目类型和日期;\n:确定集合地点和时间;\nif (是否需要额外志愿者?) then (是)\n  :招募志愿者;\nelse (否)\n  :确定所需环保工具和装备;\nendif\n:检查天气状况和安全要求;\n:活动开始;\nrepeat\n  :进行简短培训;\n  :分配任务和责任;\n  if (是否需要分组?) then (是)\n    :组织成小组;\n  else (否)\n    :准备环保工具和物资;\n  endif\n  :实地环保;\n  :前往环保地点;\n  :开始环保工作;\n  if (发现有危险物品?) then (是)\n    :报告危险物品;\n  else (否)\n    :鼓励团队合作和互助;\n  endif\n  :团队互动;\n  :进行小组讨论或分享环保心得;\n  if (发现环保意识不足?) then (是)\n    :加强环保意识培养;\n  else (否)\n    :互相鼓励和支持;\n  endif\nrepeat while (是否需要进一步分配任务?) is(是) not(否)\n:活动结束;\n:整理环保工具和装备;\n:检查环保现场;\n:团队合影留念;\n:总结和反馈;\n:进行活动总结;\n:收集反馈意见和建议;\nstop\n@enduml",
+        "current_state": "是否需要进一步分配任务?",
+        "next_state": "进行简短培训",
+        "user_input": "需要进一步分配任务。",
+        "robot_output": "好的，我们会先进行简短培训以便更好地分配任务。"
+    },
+    {
+        "id": "hard488",
+        "flowchart": "@startuml\nstart\n:进入篮球馆;\n:办理入场手续或购买门票;\n:更衣准备;\n:进行热身运动;\nrepeat\n  :开始篮球训练或比赛;\n  if (需要教练指导?) then (是)\n    :接受教练指导训练;\n  else (否)\n    :自主训练或比赛;\n  endif\n:结束训练或比赛;\nrepeat while(是否继续训练或比赛?) is(继续) not (结束)\n:进行冷静和拉伸;\n:更衣整理;\n:离开篮球馆;\nstop\n@enduml",
+        "current_state": "是否继续训练或比赛?",
+        "next_state": "开始篮球训练或比赛",
+        "user_input": "我们决定继续训练。",
+        "robot_output": "好的，那么我们继续开始篮球训练或比赛。"
+    },
+    {
+        "id": "hard489",
+        "flowchart": "@startuml\nstart\n:进入篮球馆;\n:办理入场手续或购买门票;\n:接受体温检测和消毒;\nif (已预约场地?) then (是)\n  :核实预约信息;\nelse (否)\n  :选择可用篮球场地;\nendif\n:更衣准备;\n:进行热身运动;\nrepeat\n  :开始篮球训练或比赛;\n  if (需要裁判?) then (是)\n    :安排裁判;\n  else (否)\n    :自主训练或比赛;\n  endif\n:调整战术?;\nrepeat while(需要继续训练或调整?) is(是) not (否)\n:结束训练或比赛;\n:进行冷静和拉伸;\n:更衣整理;\n:离开篮球馆;\nstop\n@enduml",
+        "current_state": "需要继续训练或调整?",
+        "next_state": "开始篮球训练或比赛",
+        "user_input": "需要继续训练。",
+        "robot_output": "开始篮球训练或比赛。"
+    },
+    {
+        "id": "hard490",
+        "flowchart": "@startuml\nstart\nrepeat\n  :接触客户并确定需求;\n  :进行现场勘测和测量;\n  :收集客户喜好和要求;\n  :分析空间布局和功能需求;\n  :设计概念初步讨论;\n  if (概念是否符合预期?) then (是)\n    :深化设计方案;\n  else (否)\n    :重新调整设计概念;\n  endif\n  :制定详细的设计方案;\n  :制作平面布局和立体效果图;\n  :选择材料、颜色和家具;\n  :预算评估和报价;\n  :与客户确认最终设计方案;\n  if (设计方案被批准?) then (是)\n    :准备施工图纸;\n    :选择施工队伍和监督施工进度;\n    :采购和安装家具、灯具等;\n    :进行装修施工;\n    :质量检查和完工验收;\n  else (否)\n    :重新调整设计方案;\n  endif\nrepeat while(客户满意?) is(否) not (是)\n:最终交付和客户反馈;\nstop\n@enduml",
+        "current_state": "客户满意?",
+        "next_state": "接触客户并确定需求",
+        "user_input": "客户对设计方案不太满意，需要重新评估和修改。",
+        "robot_output": "好的，我们将重新接触客户并确定需求，以调整设计方案。"
+    },
+    {
+        "id": "hard491",
+        "flowchart": "@startuml\nstart\n:客户喜好调研;\nrepeat\n  :根据客户喜好选择主色调;\n  :主色调 - 根据功能和喜好选择合适的颜色;\n  :辅助色彩 - 结合主色调，确保整体搭配和谐;\n  if (主色调是否满足客户喜好?) then (是)\n    :选择辅助色彩方案;\n  else (否)\n    :重新调整主色调;\n  endif\nrepeat while (主色调不满意?) is(否) not(是)\n\n:制定最终色彩方案;\n:客户确认和调整;\nif (色彩方案被批准?) then (是)\n  :应用色彩方案;\nelse (否)\n  :重新调整色彩方案;\nendif\n:最终实施和完工验收;\n\nstop\n@enduml",
+        "current_state": "主色调不满意?",
+        "next_state": "根据客户喜好选择主色调",
+        "user_input": "客户对主色调仍不满意。",
+        "robot_output": "我们将根据客户的喜好选择新的主色调。"
+    },
+    {
+        "id": "hard492",
+        "flowchart": "@startuml\nstart\n:需求分析和功能评估;\n:选择合适的装饰材料;\nrepeat\n  if (空间类型是厨房或卫生间?) then (是)\n    :耐水性强的瓷砖或防水涂料;\n  elseif (空间类型是客厅或卧室?) then (是)\n    :考虑木地板或地暖地板;\n  else\n    :根据功能和风格选择合适的装饰材料;\n  endif\n  if (美观性是否满足要求) then (是)\n    :考虑材料耐久性和实用性;\n  else (否)\n    :重新选择装饰材料;\n  endif\nrepeat while(装饰材料是否满足所有要求?) is(否)\n:选择合适的地板材料;\nif (需要耐磨和易清洁?) then (是)\n  :选择强化复合地板或实木地板;\nelse\n  :根据风格和预算选择合适的地板材料;\nendif\nif (耐久性和实用性是否达标) then (是)\n  :考虑地板材料的美观性;\nelse (否)\n  :重新选择地板材料;\nendif\n:选择合适的墙面涂料;\nif (需要防潮防霉) then (是)\n  :选择防潮防霉涂料或壁纸;\nelse\n  :根据风格和预算选择合适的墙面涂料;\nendif\nif (美观性和实用性是否符合要求) then (是)\n  :考虑墙面涂料的耐久性;\nelse (否)\n  :重新选择墙面涂料;\nendif\n:最终材料确认和采购;\n:施工和装修;\nstop\n@enduml",
+        "current_state": "装饰材料是否满足所有要求?",
+        "next_state": "空间类型是厨房或卫生间?",
+        "user_input": "装饰材料还不完全符合我们的要求。",
+        "robot_output": "那我们先确认一下空间类型是厨房还是卫生间。"
+    },
+    {
+        "id": "hard493",
+        "flowchart": "@startuml\nstart\n:确定空间功能和需求;\n:收集人体尺寸数据;\nrepeat :分析人体工程学原理;\nif (选择家具类型和布局) then (是)\n  :考虑家具尺寸与人体尺寸的匹配;\n  :设计合适的家具布局;\nelse (否)\n  :重新收集数据和分析;\nendif\nrepeat while(设计合理?) is(否) not (是)\n:选择符合人体工程学的家具材料;\n:考虑家具色彩和风格;\n:制定最终家具和布局方案;\n:客户确认和调整;\nif (方案被批准) then (是)\n  :实施家具和布局设计;\nelse (否)\n  :重新调整方案;\nendif\n:最终验收和调整;\nstop\n@enduml",
+        "current_state": "设计合理?",
+        "next_state": "分析人体工程学原理",
+        "user_input": "设计尚不合理，需要重新分析人体工程学原理。",
+        "robot_output": "正在分析人体工程学原理，以便优化设计。"
+    },
+    {
+        "id": "hard494",
+        "flowchart": "@startuml\nstart\n:确定空间功能和风格要求;\n:测量空间尺寸和特征;\n:分析家具需求和布置方案;\nrepeat\nif (选择合适的家具类型) then (是)\n  :根据空间功能选择适当的家具;\nelse (否)\n  :重新评估家具需求;\nendif\nrepeat while(家具需求符合?) is(不符合)\n:考虑家具与空间尺寸的匹配;\n:设计家具布置方案;\nif (考虑舒适度和实用性) then (是)\n  :调整家具布置以增强舒适度和实用性;\nelse (否)\n  :重新设计家具布置方案;\nendif\n:考虑人流线和功能区划;\n:客户确认和调整设计方案;\n:最终验收和调整;\nstop\n@enduml",
+        "current_state": "家具需求符合?",
+        "next_state": "选择合适的家具类型",
+        "user_input": "家具需求不符合，需要重新选择家具类型。",
+        "robot_output": "请开始选择合适的家具类型以满足空间需求。"
+    },
+    {
+        "id": "hard495",
+        "flowchart": "@startuml\nstart\n:选择自行车类型和数量;\n:填写租车申请表;\nrepeat :提交身份证明和押金;\nif (押金和身份证明确认无误?) then (是)\n  :签署租车协议;\n  :支付租金和押金;\nelse (否)\n  :重新填写申请表或提供正确资料;\nendif\nrepeat while(资料无误?) is(否) not (是)\n:领取自行车和配件;\n:检查自行车和配件是否完好;\nif (自行车和配件完好?) then (是)\n  :开始骑行;\nelse (否)\n  :通知工作人员并更换设备;\nendif\n:归还自行车;\n:检查自行车和配件是否完好;\n:结算租金和押金;\n:退还押金;\nstop\n@enduml",
+        "current_state": "资料无误?",
+        "next_state": "提交身份证明和押金",
+        "user_input": "已确认所有资料无误。",
+        "robot_output": "请提交您的身份证明和押金。"
+    },
+    {
+        "id": "hard496",
+        "flowchart": "@startuml\nstart\nrepeat\n  :选择租赁方式(小时租赁/日租赁/周租赁);\n  if (选择租赁方式) then (小时租赁)\n    :选择租赁时长;\n  elseif (选择租赁方式) then (日租赁)\n    :选择租赁日期;\n  elseif (选择租赁方式) then (周租赁)\n    :选择租赁日期和归还日期;\n  else\n    :重新选择租赁方式;\n  endif\nrepeat while(租赁方式正确?) is(不正确) not (正确)\n\n:浏览并选择可用自行车;\n:填写租车申请表并提供个人信息;\n:支付租金和押金;\nif (支付成功?) then (是)\n  :收到租车确认信息;\nelse (否)\n  :重新支付或选择其他支付方式;\nendif\n:到达租车点;\n:领取自行车并接受使用说明;\n:开始骑行;\n:在规定时间内归还自行车;\n:检查自行车并确认无损坏;\nif (自行车完好?) then (是)\n  :结算费用;\n  :退还押金;\nelse (否)\n  :支付额外费用或扣除押金;\nendif\n:结束租赁流程;\nstop\n@enduml",
+        "current_state": "租赁方式正确?",
+        "next_state": "选择租赁方式(小时租赁/日租赁/周租赁)",
+        "user_input": "选择的租赁方式不正确，需要重新选择。",
+        "robot_output": "请重新选择租赁方式（小时租赁/日租赁/周租赁）。"
+    },
+    {
+        "id": "hard497",
+        "flowchart": "@startuml\nstart\nrepeat\n  :访问在线租车平台;\n  :浏览可租自行车列表;\n  :选择自行车、日期和租赁时长;\n  if (选择自行车和租赁信息) then (是)\n    :添加到购物车;\n  else (否)\n    :重新选择自行车和租赁信息;\n  endif\nrepeat while(需要更改选项?) is(是) not (否)\n:查看购物车并进入结算;\n:填写个人信息和支付方式;\n:确认订单并支付租金;\nif (支付成功?) then (是)\n  :收到订单确认和取车信息;\nelse (否)\n  :重新支付或选择其他支付方式;\nendif\n:到达租车点;\n:扫描取车二维码或确认订单信息;\n:领取自行车和配件;\n:开始骑行;\n:在规定时间内归还自行车;\n:检查自行车和配件是否完好;\nif (自行车完好?) then (是)\n  :结束租赁流程;\nelse (否)\n  :联系客服处理损坏问题;\nendif\nstop\n@enduml",
+        "current_state": "需要更改选项?",
+        "next_state": "访问在线租车平台",
+        "user_input": "我已经确定不需要更改选项。",
+        "robot_output": "现在访问在线租车平台。"
+    },
+    {
+        "id": "hard498",
+        "flowchart": "@startuml\nstart\n:打开共享单车App;\nrepeat\n  :查找附近可用单车;\n  if (找到可用单车?) then (是)\n    :扫描单车上的二维码解锁;\n  else (否)\n    :寻找其他可用单车;\n  endif\nrepeat while(单车是否可用?) is(否) not (是)\n:骑行至目的地;\n:寻找合适的停车点;\nrepeat\n  :将单车停放在停车点;\n  :检查停车点是否在运行区域内;\n  if (停车点在运行区域内?) then (是)\n    :结束骑行并锁定单车;\n  else (否)\n    :寻找其他符合要求的停车点;\n  endif\nrepeat while(停车点在运行区域内?) is(否) not (是)\nstop\n@enduml",
+        "current_state": "单车是否可用?",
+        "next_state": "查找附近可用单车",
+        "user_input": "未找到可用的单车。",
+        "robot_output": "正在查找附近可用的单车。"
+    },
+    {
+        "id": "hard499",
+        "flowchart": "@startuml\n' 共享单车使用流程\nstart\nrepeat\n  :注册并登录共享单车App;\n  if (登录成功?) then (是)\n    :查找附近可用单车;\n    if (找到可用单车?) then (是)\n      :选择并解锁单车;\n      :是否购买周卡或月卡?;\n      if (购买周卡或月卡?) then (是)\n        :享受免费骑行;\n        :开始骑行;\n      else (否)\n        :支付骑行费用;\n        :开始骑行;\n      endif\n      :骑行至目的地;\n      :寻找停车点;\n      if (找到停车点?) then (是)\n        :将单车停放在停车点;\n        :检查停车点是否符合规定;\n        if (停车点符合规定?) then (是)\n          :结束骑行并锁定单车;\n          :评价本次骑行体验;\n        else (否)\n          :寻找其他合适的停车点;\n          :重新停放单车;\n        endif\n      else (否)\n        :继续寻找停车点;\n      endif\n    else (否)\n      :寻找其他可用单车;\n    endif\n  else (否)\n    :注册或重新登录;\n  endif\nrepeat while (再次骑行?) is(是) not (否)\nstop\n@enduml",
+        "current_state": "再次骑行?",
+        "next_state": "注册并登录共享单车App",
+        "user_input": "我决定再次骑行。",
+        "robot_output": "请注册并登录共享单车App。"
+    },
+    {
+        "id": "hard500",
+        "flowchart": "@startuml\nstart\nrepeat\n  :客户选择美甲款式;\n  :客户选择美甲颜色;\n  :美甲师准备工具和材料;\n  :客户泡洗手并修剪指甲;\n  :美甲师涂抹底油;\n  :美甲师涂抹指甲油;\n  :客户选择图案或装饰;\n  if (选择图案或装饰?) then (是)\n    :美甲师进行绘画或添加装饰;\n  else (否)\n  endif\n  :涂抹光疗油并照射光疗灯;\n  :客户等待指甲干燥;\n  :美甲师涂抹指甲油固化剂;\nrepeat while(客户满意美甲效果?) is(不满意) not (满意)\n:客户完成美甲并离开;\nstop\n@enduml",
+        "current_state": "客户满意美甲效果?",
+        "next_state": "客户选择美甲款式",
+        "user_input": "对美甲效果不满意，我想重新选择美甲款式。",
+        "robot_output": "好的，请您选择新的美甲款式。"
+    },
+    {
+        "id": "hard501",
+        "flowchart": "@startuml\n' 美甲流程\nstart\n:客户预约美甲服务;\n:客户到达美甲店;\n:美甲师与客户沟通需求;\nif (选择款式和颜色?) then (是)\n  :客户选择美甲款式和颜色;\nelse (否)\n  :美甲师提供建议;\n  :客户确认选择;\nendif\nrepeat\n  :客户泡洗手并修剪指甲;\n  :美甲师开始美甲护理;\n  :涂抹底油;\n  :涂抹指甲油;\n  if (是否贴甲片?) then (是)\n    if (全贴甲片?) then (是)\n    :制作全贴甲片;\n  else (否)\n    :制作半贴甲片;\n  endif\n  else (否)\n    :继续涂抹指甲油;\n  endif\n  if (是否建构?) then (是)\n    :进行建构;\n  else (否)\n    :光疗处理;\n  endif\n:客户等待指甲干燥;\n:涂抹指甲油固化剂;\nrepeat while(美甲效果满意?) is(不满意) not (满意)\n:客户完成美甲并支付服务费用;\n:客户离开美甲店;\nstop\n@enduml",
+        "current_state": "美甲效果满意?",
+        "next_state": "客户泡洗手并修剪指甲",
+        "user_input": "我对美甲效果不太满意。",
+        "robot_output": "那我们先为您泡洗手并修剪指甲，看看如何改进。"
+    },
+    {
+        "id": "hard502",
+        "flowchart": "@startuml\nstart\n:客户咨询信用卡信息;\n:银行提供信用卡种类和申请要求;\n:客户选择适合的信用卡种类;\n:银行提供信用卡申请表;\nrepeat\n  :客户填写个人信息和联系方式;\n  :客户提供身份证明、收入证明和其他必要材料;\n  :银行工作人员审核资料完整性;\n  if (资料完整?) then (是)\n    :银行工作人员进行信用评估;\n    if (信用评估通过?) then (是)\n      :银行发放信用卡;\n      :客户激活信用卡;\n      :客户签署信用卡协议;\n      :客户开始使用信用卡;\n    else (否)\n      :通知客户信用评估未通过;\n    endif\n  else (否)\n    :要求客户补充材料;\n    :客户提供补充材料;\n    :重新审核资料;\n  endif\nrepeat while(资料不足或信用评估不通过?) is(是) not (否)\n:客户办理信用卡后续服务;\nstop\n@enduml",
+        "current_state": "资料不足或信用评估不通过?",
+        "next_state": "客户填写个人信息和联系方式",
+        "user_input": "我将补充材料或重新提交信息。",
+        "robot_output": "请填写您的个人信息和联系方式。"
+    },
+    {
+        "id": "hard503",
+        "flowchart": "@startuml\nstart\n:客户咨询信用卡信息;\nif (需要提供资料?) then (是)\n  :银行提供信用卡种类和申请要求;\n  repeat\n    :客户填写个人信息和联系方式;\n    :客户提供身份证明、收入证明和其他必要材料;\n    if (资料齐全?) then (是)\n      :资料提交银行;\n      :等待银行审核;\n      if (审核通过?) then (是)\n        :银行发放信用卡;\n        :客户激活信用卡;\n        :开始使用信用卡;\n      else (否)\n        :通知客户审核未通过;\n      endif\n    else (否)\n      :通知客户补充资料;\n      :客户补充资料;\n    endif\n  repeat while(需要补充资料?) is(是) not (否)\nelse (否)\n  :直接进行信用评估;\n  if (评估通过?) then (是)\n    :银行发放信用卡;\n    :客户激活信用卡;\n    :开始使用信用卡;\n  else (否)\n    :通知客户评估未通过;\n  endif\nendif\n:客户享受信用卡服务;\nstop\n@enduml",
+        "current_state": "需要补充资料?",
+        "next_state": "客户填写个人信息和联系方式",
+        "user_input": "我还需要补充一些资料。",
+        "robot_output": "请填写个人信息和联系方式。"
+    },
+    {
+        "id": "hard504",
+        "flowchart": "@startuml\nstart\n:客户前往银行柜台;\n:客户申请办理储蓄卡;\n:银行工作人员提供储蓄卡申请表;\n:客户填写个人信息和联系方式;\nrepeat\n  :客户提供身份证明和其他必要材料;\n  :银行工作人员审核资料完整性;\n  if (资料完整?) then (是)\n    :银行工作人员进行身份验证;\n    if (身份验证通过?) then (是)\n      :客户设置储蓄卡密码;\n      :银行工作人员办理储蓄卡开户手续;\n      :银行发放储蓄卡;\n      :客户激活储蓄卡;\n      :客户存入首笔资金;\n      :客户办理网银/手机银行服务;\n    else (否)\n      :通知客户身份验证未通过;\n    endif\n  else (否)\n    :通知客户补充资料;\n    :客户补充资料;\n    :重新审核资料;\n  endif\nrepeat while (需要办理新的储蓄卡?) is (是) not (不用)\n:客户办理完毕;\nstop\n@enduml",
+        "current_state": "需要办理新的储蓄卡?",
+        "next_state": "客户提供身份证明和其他必要材料",
+        "user_input": "我需要办理一张新的储蓄卡。",
+        "robot_output": "请您先提供身份证明和其他必要材料。"
+    },
+    {
+        "id": "hard505",
+        "flowchart": "@startuml\nstart\n:高考成绩公布;\n:学生获取高考成绩单;\n:学生查看高考成绩，确定填报志愿的院校和专业范围;\nif (需要提前调研院校专业?) then (是)\n  :学生进行院校专业调研;\nelse (否)\n  :跳过此步骤;\nendif\n:学生登录填报志愿系统;\n:系统提供填报志愿的入口和说明;\nrepeat\n  :学生填写志愿，按照优先级排序;\n  :填报完成后系统生成志愿表;\n  :学生确认无误后提交志愿表;\n  if (填报截止?) then (是)\n    :系统关闭填报入口;\n    :等待录取结果公布;\n  else (否)\n    :学生可在截止前修改志愿;\n    :等待填报截止;\n  endif\nrepeat while(填报不满意?) is(还是不满意) not(满意)\n:录取结果公布;\nif (被录取?) then (是)\n  :学生按照录取通知书要求办理报到手续;\nelse (否)\n  :学生进行补报志愿或参加征集志愿;\nendif\n:报到入学;\nstop\n@enduml",
+        "current_state": "填报不满意?",
+        "next_state": "学生填写志愿，按照优先级排序",
+        "user_input": "我对之前的志愿填报不满意，需要重新填写志愿。",
+        "robot_output": "请再次根据您的优先级填写志愿。"
+    },
+    {
+        "id": "hard506",
+        "flowchart": "@startuml\nstart\n:高考成绩公布;\n:学生查看高考成绩，确定填报志愿的院校和专业范围;\nif (需要家长陪同?) then (是)\n  :学生与家长共同前往招生办咨询专业;\nelse (否)\n  :学生单独前往招生办咨询专业;\nendif\n\nrepeat\n  :招生办提供专业信息和建议;\n  if (学生满意?) then (是)\n    :学生和家长回家商讨志愿填报;\n  else (否)\n    :招生办提供更多专业选择建议;\n    if (学生需要再考虑?) then (是)\n      :安排再次咨询时间;\n    else (否)\n      :学生和家长回家商讨志愿填报;\n    endif\n  endif\nrepeat while (需要再次咨询?) is(是) not (否)\n\n:学生登录填报志愿系统;\n:填报完成后系统生成志愿表;\n:学生确认无误后提交志愿表;\nstop\n@enduml",
+        "current_state": "需要再次咨询?",
+        "next_state": "招生办提供专业信息和建议",
+        "user_input": "我们需要再次咨询专业信息。",
+        "robot_output": "好的，招生办会为您提供专业信息和建议。"
+    },
+    {
+        "id": "hard507",
+        "flowchart": "@startuml\nstart\n:准备食材和米饭;\n:清洗米饭;\n:加入适量清水;\nrepeat\n  :浸泡片刻使米饭充分吸水;\n  if (需要继续浸泡?) then (是)\n    :继续浸泡片刻;\n  endif\nrepeat while (需要重新浸泡?) is (是) not (否)\n:接通电源;\n:选择合适的煮饭模式;\n:按下启动按钮;\n:电饭煲开始加热;\n:等待煮饭完成;\n:煮饭完成后保温;\n:煮饭完成;\nstop\n@enduml",
+        "current_state": "需要重新浸泡?",
+        "next_state": "浸泡片刻使米饭充分吸水",
+        "user_input": "米饭已经足够浸泡。",
+        "robot_output": "好的，现在让米饭片刻，使其充分吸水。"
+    },
+    {
+        "id": "hard508",
+        "flowchart": "@startuml\nstart\n:准备食材和米、水;\n:清洗米;\n:加入适量清水和米;\n:选择煮粥模式;\nrepeat\n  :按下启动按钮;\n  :电饭煲开始加热;\n  :等待煮粥完成;\n  :粥煮至浓稠度合适;\n  if (需要保温?) then (是)\n    :粥煮至浓稠度合适后保温;\n  else (否)\n    :关闭电饭煲;\n  endif\nrepeat while(粥未煮好?) is(否) not (是)\n:煮粥完成;\nstop\n@enduml",
+        "current_state": "粥未煮好?",
+        "next_state": "按下启动按钮",
+        "user_input": "粥还未煮好，现在按下启动按钮。",
+        "robot_output": "已按下启动按钮，电饭煲开始加热。"
+    },
+    {
+        "id": "hard509",
+        "flowchart": "@startuml\nstart\n:准备食材;\nif (有足够调味料?（酱油、醋、糖、料酒、盐、生抽）) then (是)\n  :继续下一步;\nelse (否)\n  :使用替代品;\nendif\n:将排骨洗净，切成小段;\n:葱姜蒜切末备用;\nrepeat\n  :热锅凉油，放入排骨煸炒至金黄;\n  :加入葱姜蒜煸炒出香味;\n  :加入适量酱油、料酒、盐、糖和清水，大火烧开后转小火炖煮40分钟;\n  if (需要勾芡?) then (是)\n    :淀粉加水调匀备用;\n    :炖煮完毕后，倒入淀粉水勾芡收汁;\n  else (否)\n    :继续小火炖煮至汤汁浓稠;\n  endif\n  :最后加入醋和生抽，快速翻炒均匀;\n repeat while(满意口味?) is(不满意) not (满意)\n:出锅装盘，撒上葱花点缀;\nstop\n@enduml",
+        "current_state": "满意口味?",
+        "next_state": "热锅凉油，放入排骨煸炒至金",
+        "user_input": "口味还不满意，让我们重新开始从煸炒排骨开始。",
+        "robot_output": "好的，我们将热锅凉油，放入排骨煸炒至金黄。"
+    },
+    {
+        "id": "hard510",
+        "flowchart": "@startuml\nstart\n:准备食材（面团、番茄酱、奶酪、意大利香肠、蘑菇、青椒、洋葱等）;\n:将面团放在烤盘上，用擀面杖擀成薄皮;\n:用勺子均匀涂抹番茄酱在披萨皮上;\n:均匀撒上切碎的奶酪（比如马苏里拉、切达等）;\nrepeat\n  :加入切片意大利香肠、蘑菇片、青椒丝、洋葱丝等配料;\nrepeat while (还有未加入的配料?);\n\n:烤箱预热至220°C，上下火加热;\n:将披萨放入烤箱中层，烤约15-20分钟直至奶酪融化且披萨边缘金黄酥脆;\nif (需要调味?) then (是)\n  :出炉后撒上新鲜香草（比如欧芹、罗勒）和辣椒粉等调味料;\nelse (否)\n  :出炉后待披萨稍凉片刻即可享用;\nendif\n:用披萨刀将披萨切成均匀的片状;\n:上桌食用;\nstop\n@enduml",
+        "current_state": "还有未加入的配料?",
+        "next_state": "加入切片意大利香肠、蘑菇片、青椒丝、洋葱丝等配料",
+        "user_input": "还有一些配料需要加入。",
+        "robot_output": "请开始加入意大利香肠、蘑菇片、青椒丝、洋葱丝等配料。"
+    },
+    {
+        "id": "hard511",
+        "flowchart": "@startuml\nstart\n:准备食材（意大利面、牛肉碎、番茄、洋葱、大蒜、红酒、橄榄油、盐、胡椒、干燥香草、意大利干酪等）;\n:将大蒜和洋葱切碎;\n:在锅中加热橄榄油，将大蒜和洋葱爆香;\n:加入牛肉碎煸炒至变色;\n:倒入切碎的番茄和适量红酒;\nif (需要调味?) then (是)\n  :加入盐、胡椒、干燥香草等调味料;\nelse (否)\n  :继续烹饪;\nendif\nrepeat\n  :煮沸后转小火慢炖约1小时，直至肉酱浓稠;\nrepeat while (肉酱浓稠?) is (不够浓稠) not (已浓稠)\n:在另一锅中煮沸足够的水，加入盐;\n:将意大利面放入沸水中煮至 al dente（略带嚼劲）;\n:捞出面条，沥干水分;\n:将意大利面和肉酱混合均匀;\n:摆盘，撒上意大利干酪;\nif (喜欢) then (是)\n  :可配以新鲜香草点缀;\nelse (否)\n  :省略;\nendif\n:上桌享用;\nstop\n@enduml",
+        "current_state": "肉酱浓稠?",
+        "next_state": "煮沸后转小火慢炖约1小时，直至肉酱浓稠",
+        "user_input": "肉酱还不够浓稠。",
+        "robot_output": "请继续煮沸后转小火慢炖约1小时，直至肉酱浓稠。"
+    },
+    {
+        "id": "hard512",
+        "flowchart": "@startuml\nstart\n:准备陶泥和陶艺工具;\n:设计陶艺作品构思;\n:准备好工作台和所需的工具;\n:将陶泥揉成均匀的块状;\nrepeat :开始塑造陶艺作品;\nif (需要精细雕刻?) then (是)\n  :使用雕刻工具进行精细雕刻;\nelse (否)\n  :继续塑造;\nendif\nrepeat while(塑造满意?) is(不满意) not(满意)\n:等待陶艺作品完全干燥;\n:进行初次烧制（称为生坯烧）;\nif (需要上釉?) then (是)\n  :涂抹釉料;\n  :进行第二次烧制（称为釉烧）;\nelse (否)\n  :进行最终烧制（称为素烧）;\nendif\n:冷却后取出成品;\n:检查并修整陶艺作品;\n:完成陶艺作品;\nstop\n@enduml",
+        "current_state": "塑造满意?",
+        "next_state": "开始塑造陶艺作品",
+        "user_input": "目前的塑造结果不满意。",
+        "robot_output": "请继续塑造陶艺作品。"
+    },
+    {
+        "id": "hard513",
+        "flowchart": "@startuml\nstart\n:准备材料（珠子、线、扣子、吊坠等);\n:选择设计风格和颜色主题;\n:测量手腕尺寸并确定合适长度;\nrepeat\n  :挑选珠子款式和大小;\n  :根据设计线路图开始串珠;\n  :根据设计调整珠子搭配;\nif (需要添加吊坠或装饰?) then (是)\n  :在适当位置串入吊坠或装饰;\nelse (否)\n  :保持手链简洁;\nendif\nrepeat while (未达到设计长度) is (未达到要求)\n:结尾处使用扣子或打结固定;\nif (需要调整长度或尺寸?) then (是)\n  :根据需要调整手链长度;\nelse (否)\n  :完成手链串珠;\n  stop\nendif\nrepeat\nif (需要添加扣子或链条延长链子长度?) then (是)\n  :添加扣子或链条;\nelse (否)\n  :结束制作;\n  stop\nendif\nrepeat while (未满足要求)\n:检查手链质量和外观;\nrepeat \n  :根据需要进行调整;\nrepeat while (质量或外观未达标)\n:完成手链制作;\nstop\n@enduml",
+        "current_state": "未达到设计长度",
+        "next_state": "挑选珠子款式和大小",
+        "user_input": "手链还未达到设计要求的长度。",
+        "robot_output": "请先挑选珠子的款式和大小。"
+    },
+    {
+        "id": "hard514",
+        "flowchart": "@startuml\nstart\n:准备材料（戒指骨架、珠子、装饰品等);\n:选择适合的戒指骨架和珠子;\n:根据戒指骨架大小确定珠子数量;\nrepeat\n  :开始串珠或装饰戒指骨架;\n  if (需要进行特殊设计?) then (是)\n    :根据设计添加装饰品;\n  else (否)\n    :保持简单的串珠设计;\n  endif\n  :继续装饰直至满意;\nrepeat while(需要重新设计?) is(是) not (否)\n:调整戒指大小（如有必要）;\n:完成戒指制作;\nstop\n@enduml",
+        "current_state": "需要重新设计?",
+        "next_state": "开始串珠或装饰戒指骨架",
+        "user_input": "不需要重新设计了，准备开始串珠。",
+        "robot_output": "好的，现在开始串珠或装饰戒指骨架。"
+    },
+    {
+        "id": "hard515",
+        "flowchart": "@startuml\nstart\n:选择毛料（羊毛、羊绒、羊绒混纺等）;\n:确定毛毯尺寸和设计风格;\n:准备工具（毛线、织布工具、剪刀、织布架等）;\n:测量织布架尺寸并搭建;\nrepeat :根据设计图案开始编织毛毯;\n:根据设计调整颜色和纹理;\nif (需要添加图案或装饰?) then (是)\n  :选择适合的图案样式（几何图案、花卉、动物等）;\n  :根据图案在毛毯上描绘轮廓;\n  :根据轮廓填充颜色或纹理;\n  :细致处理图案细节;\nelse (否)\n  :保持毛毯简洁;\nendif\n:继续编织直至达到预期尺寸;\nif (需要改变纹理或密度?) then (是)\n  :调整纹理或密度以达到预期效果;\nelse (否)\n  :保持编织一致;\nendif\nrepeat while(未达到预期尺寸或效果?) is(未完成) not (已完成);\n:修剪杂乱的毛线;\n:检查毛毯质量和外观;\nif (需要清洗或熨烫?) then (是)\n  :清洗并熨烫毛毯;\nelse (否)\n  :保持毛毯整洁;\nendif\n:完成毛毯制作;\nstop\n@enduml",
+        "current_state": "未达到预期尺寸或效果?",
+        "next_state": "根据设计图案开始编织毛毯",
+        "user_input": "准备开始根据设计图案编织毛毯。",
+        "robot_output": "好的，开始根据设计图案编织毛毯。"
+    },
+    {
+        "id": "hard516",
+        "flowchart": "@startuml\nstart\n:选择花材（鲜花、绿叶、干花等）;\n:准备花束包装材料（花束纸、绳子、花瓶等）;\n:准备工具（剪刀、绑扎线等）;\nrepeat\n  :准备花束包装纸，并修剪合适尺寸;\n  :准备花材，修剪花枝和叶子;\n  :根据设计风格开始插花;\n  if (需要添加装饰物?) then (是)\n    :根据设计添加装饰物;\n    if (选择了装饰物) then (是)\n      :确认装饰物搭配是否协调;\n    else (否)\n      :继续插花;\n    endif\n  else (否)\n    :保持花束简洁;\n  endif\n  :用绑扎线固定花束;\n  :用花束纸包裹整束花;\n  :用绳子系紧花束;\n  :修剪花束整齐;\nrepeat while(插花完成?) is(未完成) not (已完成)\n:将花束放入花瓶或包装好;\n:完成花束制作;\nstop\n@enduml",
+        "current_state": "插花完成?",
+        "next_state": "准备花束包装纸，并修剪合适尺寸",
+        "user_input": "插花尚未完成。",
+        "robot_output": "请准备花束包装纸，并修剪合适尺寸。"
+    },
+    {
+        "id": "hard517",
+        "flowchart": "@startuml\nstart\n:准备原料（蜂蜡、植物油、色素等）;\n:准备工具（容器、搅拌棒、计量杯等）;\nrepeat\n  :选择口红容器并清洁消毒;\n  if (容器已准备好?) then (是)\n    :按比例混合蜂蜡和植物油;\n    :加入适量色素并搅拌均匀;\n    :根据需要添加香精或其他添加剂;\n    :将混合物倒入口红容器中;\n    :等待凝固并整理口红表面;\n    :封口并标记口红色号;\n  else (否)\n    :清洁并准备好容器;\n  endif\nrepeat while (口红制作未完成?) is(继续制作) not (完成制作));\n:完成口红制作;\nstop\n@enduml",
+        "current_state": "口红制作未完成?",
+        "next_state": "选择口红容器并清洁消毒",
+        "user_input": "继续制作口红。",
+        "robot_output": "请选择口红容器并进行清洁消毒。"
+    },
+    {
+        "id": "hard518",
+        "flowchart": "@startuml\nstart\n:确定小包尺寸和款式设计;\n:选择面料和配件（拉链、纽扣等）;\nrepeat\n  :裁剪面料至合适尺寸;\n  :缝制小包主体;\n  if (需要添加拉链?) then (是)\n    :安装拉链;\n  else (否)\n    :缝制小包口;\n  endif\n  :缝制小包内衬;\n  :装饰小包外观（可选）;\n  :整理线头并修整;\nrepeat while(制作质量合格?) is(不合格) not (合格)\n:完成小包制作;\nstop\n@enduml",
+        "current_state": "制作质量合格?",
+        "next_state": "裁剪面料至合适尺寸",
+        "user_input": "制作质量不合格，需要重新制作。",
+        "robot_output": "开始裁剪面料至合适尺寸，进行重新制作。"
+    },
+    {
+        "id": "hard519",
+        "flowchart": "@startuml\nstart\nrepeat\n  :填写签证申请表;\n  :准备所需材料（护照、照片、邀请函等）;\n  :预约签证面试;\n  if (需要面试?) then (是)\n    :前往日本签证中心进行面试;\n  else (否)\n    :递交申请材料;\n  endif\n  :等待签证审批;\n  if (审批通过?) then (是)\n    :缴纳签证费用;\n    :领取签证或选择邮寄;\n  else (否)\n    :根据拒签原因修改申请材料;\n    :重新提交材料或申请复核;\n  endif\nrepeat while (所有审批通过?) is (否) not (是)\n:安排行程，准备前往日本;\nstop\n@enduml",
+        "current_state": "所有审批通过?",
+        "next_state": "填写签证申请表",
+        "user_input": "审批没有全部通过。",
+        "robot_output": "请重新填写签证申请表。"
+    }
+]
