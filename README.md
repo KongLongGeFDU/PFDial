@@ -3,6 +3,8 @@ The code repository of paper "PFDial: A Structured Dialogue Instruction Fine-tun
 
 Paper Link:https://arxiv.org/abs/2503.06706v1
 
+Huggingface Link:https://huggingface.co/datasets/qzdc/PFDial
+
 Our paper has been accepted by 2025 ACL findings.
 
 ## Guide
