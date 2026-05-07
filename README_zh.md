@@ -120,6 +120,7 @@ bash SFT_Scrpit/sft.sh
     address   = "Vienna, Austria",
     publisher = "Association for Computational Linguistics",
     url       = "https://aclanthology.org/2025.findings-acl.134/",
+    doi       = "10.18653/v1/2025.findings-acl.134",
     pages     = "2626--2649",
     ISBN      = "979-8-89176-256-5"
 }
