@@ -3,7 +3,7 @@
 <p align="center">
   <a href="https://arxiv.org/abs/2503.06706"><img src="https://img.shields.io/badge/Paper-Arxiv-blue.svg?style=for-the-badge" alt="Paper"></a>
   <a href="https://aclanthology.org/2025.findings-acl.134/"><img src="https://img.shields.io/badge/Venue-ACL%202025%20Findings-orange.svg?style=for-the-badge" alt="ACL 2025"></a>
-  <a href="https://huggingface.co/datasets/qzdc/PFDial"><img src="https://img.shields.io/badge/Dataset-HuggingFace-yellow.svg?style=for-the-badge" alt="Dataset"></a>
+  <a href="https://huggingface.co/datasets/llmeval-fdu/PFDial"><img src="https://img.shields.io/badge/Dataset-HuggingFace-yellow.svg?style=for-the-badge" alt="Dataset"></a>
   <a href="https://github.com/KongLongGeFDU/PFDial/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-Apache_2.0-green.svg?style=for-the-badge" alt="License"></a>
 </p>
 
@@ -12,7 +12,7 @@
 ## 🔔 News
 
 - 🏆 **[2025-05]** Our paper has been accepted at **ACL 2025 Findings**.
-- 🤗 **[2025-03]** Dataset released on [Hugging Face](https://huggingface.co/datasets/qzdc/PFDial).
+- 🤗 **[2025-03]** Dataset released on [Hugging Face](https://huggingface.co/datasets/llmeval-fdu/PFDial).
 - 🎉 **[2025-03]** Our paper is released on arXiv: [arXiv:2503.06706](https://arxiv.org/abs/2503.06706).
 
 ## 📚 Overview
@@ -72,7 +72,7 @@ You can also load the SFT split directly from Hugging Face:
 ```python
 from datasets import load_dataset
 
-dataset = load_dataset("qzdc/PFDial")
+dataset = load_dataset("llmeval-fdu/PFDial")
 ```
 
 ### 2. Supervised Fine-tuning
