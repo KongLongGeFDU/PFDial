@@ -39,7 +39,7 @@ PFDial/
 ├── PFDial-Raw_Data/         # 🔹 原始数据（带 ID 的五元组）
 ├── PFDial-H-Raw_Data/       # 🔸 困难基准（Hard-bench）原始数据
 ├── PFDial-SFT_Data/         # ✅ 监督微调数据
-└── SFT_Scrpit/              # 🛠️ 训练脚本（基于 OpenRLHF）
+└── SFT_Script/              # 🛠️ 训练脚本（基于 OpenRLHF）
 ```
 
 ## 📊 数据统计
@@ -80,7 +80,7 @@ dataset = load_dataset("konglongge/PFDial")
 我们基于 [OpenRLHF](https://github.com/OpenRLHF/OpenRLHF) 提供了参考训练脚本：
 
 ```bash
-bash SFT_Scrpit/sft.sh
+bash SFT_Script/sft.sh
 ```
 
 请在运行前根据实际情况修改脚本中的模型路径、数据路径与超参数。

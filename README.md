@@ -39,7 +39,7 @@ PFDial/
 ├── PFDial-Raw_Data/         # 🔹 Raw data (structured as five-tuples with IDs)
 ├── PFDial-H-Raw_Data/       # 🔸 Hard-bench raw data
 ├── PFDial-SFT_Data/         # ✅ Supervised fine-tuning data
-└── SFT_Scrpit/              # 🛠️ Reference training scripts (OpenRLHF)
+└── SFT_Script/              # 🛠️ Reference training scripts (OpenRLHF)
 ```
 
 ## 📊 Dataset Statistics
@@ -80,7 +80,7 @@ dataset = load_dataset("konglongge/PFDial")
 We provide reference training scripts based on [OpenRLHF](https://github.com/OpenRLHF/OpenRLHF):
 
 ```bash
-bash SFT_Scrpit/sft.sh
+bash SFT_Script/sft.sh
 ```
 
 Adjust model path, data path, and hyper-parameters in the script before running.
